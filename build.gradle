@@ -1,22 +1,24 @@
-buildscript 
-{
-    repositories 
-	{
-        mavenCentral()
-        maven 
-		{
+buildscript {
+    repositories {
+        maven {
             name = "forge"
-            url = "http://files.minecraftforge.net/maven"
+            url = "https://maven.minecraftforge.net"
         }
-        maven 
-		{
+        maven {
             name = "sonatype"
             url = "https://oss.sonatype.org/content/repositories/snapshots/"
         }
+        maven {
+            name = "Scala CI dependencies"
+            url = "https://repo1.maven.org/maven2/"
+        }
+        maven {
+            name = "jitpack"
+            url = "https://jitpack.io"
+        }
     }
-    dependencies 
-	{
-        classpath 'net.minecraftforge.gradle:ForgeGradle:1.2-SNAPSHOT'
+    dependencies {
+        classpath 'com.github.GTNewHorizons:ForgeGradle:1.2.11'
     }
 }
 
@@ -44,16 +46,16 @@ allprojects
     minecraft 
 	{
         version = config.minecraft_version + "-" + config.forge_version
-		
-		replaceIn "References.java"
-		replace "@MOD_VERSION@", config.mod_version
+        
+        replaceIn "References.java"
+        replace "@MOD_VERSION@", config.mod_version
 	
         if(file('../run').exists()) 
-		{
+        {
             runDir = "../run"
         } 
-		else 
-		{
+        else 
+        {
             runDir = ""
         }
     }
